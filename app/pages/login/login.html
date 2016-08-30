@@ -16,19 +16,30 @@
 <ion-content padding>
 
 
+  <div *ngIf ="!verifylogin">
+    <div *ngIf ="!verifylogin" class = "alert alert-danger">
+      <strong>Incorrect Login Information..</strong>
+    </div>
+  </div>
+
   <form novalidate [formGroup]="loginForm" (ngSubmit)="doLogin(loginForm.value)">
     <input [formControl]="loginForm.controls['email']" type="email" placeholder="Your email">
 
     <div *ngIf ="loginForm.controls['email'].touched">
       <div *ngIf ="!loginForm.controls['email'].valid" class = "alert alert-danger">
-        <strong>First name is required</strong>
+        <strong>Email is required</strong>
+      </div>
+    </div>
+    <div *ngIf ="!verifyemail">
+      <div *ngIf ="!verifyemail" class = "alert alert-danger">
+        <strong>Email must be valid</strong>
       </div>
     </div>
     <input [formControl]="loginForm.controls['password']" type="password" placeholder="Your password">
 
     <div *ngIf ="loginForm.controls['password'].touched">
       <div *ngIf ="!loginForm.controls['password'].valid" class = "alert alert-danger">
-        <strong>First name is required</strong>
+        <strong>Password  is required</strong>
       </div>
     </div>
     <button type="submit" >Log in</button>
